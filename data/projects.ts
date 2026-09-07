@@ -9,6 +9,13 @@ export type Project = {
   outcome: string;
   role: string;
   technologies: string[];
+  /**
+   * Project visual source. Use a local public path ("/project.png") or a full
+   * hosted URL ("https://images.example.com/project.png").
+   *
+   * Hosted images must have their domain allowed in next.config.ts before
+   * Next.js can optimise and display them.
+   */
   image?: string;
   githubUrl?: string;
   status: "live" | "prototype" | "in-development";
@@ -21,52 +28,56 @@ export type Project = {
 export const projects: Project[] = [
   {
     number: "01",
-    title: "Project Alpha",
+    title: "Timeless Interior Design",
     category: "Product platform",
-    year: "2026",
+    year: "2025",
     featured: true,
     status: "prototype",
     summary:
-      "A clearer product experience designed to help people complete important tasks with less friction.",
+      "Designed and developed a responsive ecommerce website for Timeless Home Design, featuring a modern interface, intuitive product navigation, and an optimized experience across mobile and desktop devices",
     problem:
-      "Users needed a simpler way to understand their next action without navigating unnecessary screens.",
+      "The business needed an online presence that reflected the quality and aesthetic of their Home Interior Decorations, but lacked the technical resources to create one",
     outcome:
-      "A focused journey with clearer hierarchy, responsive behavior, and accessible interaction states.",
-    role: "End-to-end product design and development",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Expo"],
-    githubUrl: "https://github.com/BLHACK9IT",
+      "The website now serves as a scalable online showroom, handling thousands of visitors and supporting future expansion into new product lines and services",
+    role: "Product design and full-stack development",
+    technologies: ["laravel", "Tailwind"],
+    image: "/timeless-interior-design.png",
+    githubUrl: "https://github.com/BLHACK9IT/Timeless_Interior_Design.git",
   },
   {
     number: "02",
-    title: "Project Beta",
-    category: "Web application",
-    year: "2025",
-    status: "in-development",
-    summary:
-      "An information-rich interface that turns complicated data into decisions people can understand.",
-    problem:
-      "Important information existed, but its structure made comparison and decision-making unnecessarily difficult.",
-    outcome:
-      "Simplified information architecture with fast filtering and clearer visual relationships.",
-    role: "Product thinking, interface engineering, and API integration",
-    technologies: ["React", "Laravel", "Node.js", "Tailwind CSS"],
-    githubUrl: "https://github.com/BLHACK9IT",
-  },
-  {
-    number: "03",
-    title: "Project Gamma",
-    category: "AI experience",
+    title: "BlhackEABot",
+    category: "Command Line Application",
     year: "2026",
     status: "prototype",
     summary:
-      "An AI-assisted workflow that keeps people informed and in control of every generated result.",
+      "A CLI-based EA bot that interacts with ChatGPT to help traders make informed decisions. The bot can analyze market data, provide insights, and execute trades based on user commands.",
     problem:
-      "Users needed intelligent assistance without losing visibility into what the system was doing.",
+      "Traders needed a quick and easy way to access market insights and execute trades without having to switch between different platforms.",
     outcome:
-      "Transparent generation states, editable results, and deliberate user confirmation before important actions.",
-    role: "AI interaction design and full-stack implementation",
-    technologies: ["Next.js", "TypeScript", "AI SDK", "PostgreSQL"],
-    githubUrl: "https://github.com/BLHACK9IT",
+      "Traders can now get instant market insights and execute trades directly from the command line and the bot executed the trades base on proven strategies.",
+
+    role: " ",
+    technologies: ["Python", "Numpy", "Pandas"],
+    image: "/blhack-ea-bot.png",
+    githubUrl: "https://github.com/BLHACK9IT/BLHACK_BOT.git",
+  },
+  {
+    number: "03",
+    title: "Druppa Api",
+    category: "Api development",
+    year: "2025",
+    status: "prototype",
+    summary:
+      "Druppa is Pharmacy Api that provides access to real-time stock market data. It is a RESTful API that allows Druppa Application to access real-time stock data and also allows pharmacists to create an account and manage their pharmacy, and also for user's to shop from the app.",
+    problem:
+      "Druppa is a Pharmacy Application that allows pharmacists to create an account and manage their pharmacy, and also for user's to shop from the app. but it lacks an API that can be used to access real-time stock data from multiple exchanges around the world.",
+    outcome:
+      "Developed a RESTful API for Druppa Application that provides access to real-time stock market data and allows pharmacists to create an account and manage their pharmacy, and also for user's to shop from the app.",
+    role: "API development",
+    technologies: ["Laravel", "Php"],
+    image: "/druppa-api.png",
+    githubUrl: "https://github.com/BLHACK9IT/Druppa-Admin-Api.git",
   },
   {
     number: "04",
@@ -87,66 +98,67 @@ export const projects: Project[] = [
   },
   {
     number: "05",
-    title: "CarePath",
-    category: "Healthcare portal",
-    year: "2026",
-    status: "prototype",
-    summary:
-      "A calm patient portal that makes appointments, results, and next steps easier to understand.",
-    problem:
-      "People were forced to interpret fragmented medical updates across several disconnected screens.",
-    outcome:
-      "A plain-language timeline groups the information people need around their immediate care journey.",
-    role: "UX strategy, accessible interface design, and frontend development",
-    technologies: ["Next.js", "TypeScript", "Supabase", "WCAG"],
-    githubUrl: "https://github.com/BLHACK9IT",
-  },
-  {
-    number: "06",
-    title: "Ledgerly",
-    category: "Finance dashboard",
-    year: "2025",
-    status: "in-development",
-    summary:
-      "A personal finance workspace that turns everyday transactions into understandable spending patterns.",
-    problem:
-      "Dense charts and financial language made it difficult for new users to act on their own data.",
-    outcome:
-      "Progressive disclosure and human explanations make each insight easier to trust and use.",
-    role: "Product architecture and full-stack engineering",
-    technologies: ["React", "Node.js", "PostgreSQL", "Recharts"],
-    githubUrl: "https://github.com/BLHACK9IT",
-  },
-  {
-    number: "07",
-    title: "AccessMap",
-    category: "Community platform",
-    year: "2026",
-    status: "prototype",
-    summary:
-      "A community-led directory for finding places that meet real accessibility needs before leaving home.",
-    problem:
-      "Generic venue ratings rarely describe entrances, sensory conditions, or usable facilities.",
-    outcome:
-      "Structured community reports help people decide whether a destination works for them.",
-    role: "User research, interaction design, and application development",
-    technologies: ["Next.js", "Mapbox", "Prisma", "PostgreSQL"],
-    githubUrl: "https://github.com/BLHACK9IT",
-  },
-  {
-    number: "08",
-    title: "FocusRoom",
-    category: "Team productivity",
+    title: "Druppa App",
+    category: "Mobile ",
     year: "2025",
     status: "prototype",
     summary:
-      "A lightweight collaboration room designed around focused work instead of constant interruption.",
+      "A pharmacy and grocery shopping application that lets users conveniently purchase everyday essentials and pharmaceutical products in one place. and also allows pharmacists to create an account and manage their pharmacy.",
     problem:
-      "Teams lost important decisions inside noisy, always-on communication channels.",
+      "Users needed one convenient place to buy everyday groceries and access the prescription products that support their health and wellbeing",
     outcome:
-      "Time-boxed rooms connect decisions, owners, and follow-up actions in one quiet workflow.",
-    role: "Product design and realtime frontend engineering",
-    technologies: ["React", "TypeScript", "WebSockets", "Node.js"],
+      "Druppa is a comprehensive pharmacy and grocery app that brings convenience, health, and seamless shopping together in one unified platform",
+    role: "UX/UI Design and Frontend Development",
+    technologies: ["Expo", "Typescript", "React Native"],
+    image: "/druppa-app.png",
     githubUrl: "https://github.com/BLHACK9IT",
   },
+  // {
+  //   number: "06",
+  //   title: "Ledgerly",
+  //   category: "Finance dashboard",
+  //   year: "2025",
+  //   status: "in-development",
+  //   summary:
+  //     "A personal finance workspace that turns everyday transactions into understandable spending patterns.",
+  //   problem:
+  //     "Dense charts and financial language made it difficult for new users to act on their own data.",
+  //   outcome:
+  //     "Progressive disclosure and human explanations make each insight easier to trust and use.",
+  //   role: "Product architecture and full-stack engineering",
+  //   technologies: ["React", "Node.js", "PostgreSQL", "Recharts"],
+  //   githubUrl: "https://github.com/BLHACK9IT",
+  // },
+  // {
+  //   number: "07",
+  //   title: "AccessMap",
+  //   category: "Community platform",
+  //   year: "2026",
+  //   status: "prototype",
+  //   summary:
+  //     "A community-led directory for finding places that meet real accessibility needs before leaving home.",
+  //   problem:
+  //     "Generic venue ratings rarely describe entrances, sensory conditions, or usable facilities.",
+  //   outcome:
+  //     "Structured community reports help people decide whether a destination works for them.",
+  //   role: "User research, interaction design, and application development",
+  //   technologies: ["Next.js", "Mapbox", "Prisma", "PostgreSQL"],
+  //   githubUrl: "https://github.com/BLHACK9IT",
+  // },
+  // {
+  //   number: "08",
+  //   title: "FocusRoom",
+  //   category: "Team productivity",
+  //   year: "2025",
+  //   status: "prototype",
+  //   summary:
+  //     "A lightweight collaboration room designed around focused work instead of constant interruption.",
+  //   problem:
+  //     "Teams lost important decisions inside noisy, always-on communication channels.",
+  //   outcome:
+  //     "Time-boxed rooms connect decisions, owners, and follow-up actions in one quiet workflow.",
+  //   role: "Product design and realtime frontend engineering",
+  //   technologies: ["React", "TypeScript", "WebSockets", "Node.js"],
+  //   githubUrl: "https://github.com/BLHACK9IT",
+  // },
 ];

@@ -15,6 +15,7 @@ import {
   SiLaravel,
   SiPostgresql,
   SiMongodb,
+  SiPython,
   SiSupabase,
   SiJsonwebtokens,
   SiVercel,
@@ -109,6 +110,12 @@ const capabilities = {
         SiMongodb,
         "#47a248",
         "Flexible document storage for product data that evolves quickly.",
+      ],
+      [
+        "Python",
+        SiPython,
+        "#3776ab",
+        "A versatile language for data work, automation, and backend services that support product decisions.",
       ],
       [
         "JWT",

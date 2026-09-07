@@ -12,6 +12,7 @@ import {
   SiLaravel,
   SiPostgresql,
   SiMongodb,
+  SiPython,
   SiGit,
   SiGithub,
   SiVercel,
@@ -114,6 +115,15 @@ const skills = [
     38,
     69,
     "Flexible document storage for information that evolves quickly.",
+  ],
+  [
+    "Python",
+    SiPython,
+    "Data",
+    "#3776ab",
+    61,
+    76,
+    "A versatile language for data processing, automation, and services that work naturally with MongoDB.",
   ],
   [
     "Git",
