@@ -187,6 +187,11 @@ export const About = () => {
               {/* Thin top-edge highlight follows the same white-to-orange state. */}
               <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent shadow-[0_0_16px_rgba(255,255,255,0.5)] transition-all duration-700 group-hover:via-[#ffae6e]/90 group-hover:shadow-[0_0_20px_rgba(255,80,20,0.75)]" />
 
+              {/* Personal signature identifies the portrait without blocking it. */}
+              <div className="pointer-events-none absolute left-6 top-6 z-10 border-l border-[#ff8a24]/80 bg-black/25 py-1 pl-3 font-mono text-[0.62rem] font-medium uppercase tracking-[0.24em] text-white/75 backdrop-blur-sm transition-colors duration-700 group-hover:border-[#ffae6e] group-hover:text-[#ffdfc3]">
+                Daniel Adeyeri
+              </div>
+
               {/* Location and availability details anchored inside the image. */}
               <div className="absolute inset-x-6 bottom-6 flex items-center justify-between border-t border-white/10 pt-4 text-[0.68rem] uppercase tracking-[0.18em] text-white/45">
                 <span>Lagos, Nigeria</span>
