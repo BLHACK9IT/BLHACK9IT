@@ -65,7 +65,7 @@ const experiences: ExperienceEntry[] = [
   {
     year: "2024 — 2025",
     role: "Student",
-    company: "Lincoln College Science Management and Technology",
+    company: "Lincoln College of Science, Management and Technology",
     link: " https://www.lincoln.edu.ng/",
     story:
       "I laid the groundwork for my technical journey, developing problem-solving skills and an understanding of system logic.",
