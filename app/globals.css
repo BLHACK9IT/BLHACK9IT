@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --scrollbar-track: #050505;
+  --scrollbar-orange: #ff6a1a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Roboto", sans-serif;
+}
+
+/* Portfolio scrollbar: Firefox uses the branded solid fallback. */
+html {
+  scrollbar-color: var(--scrollbar-orange) var(--scrollbar-track);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+/* Chromium, Safari, and other WebKit-based browsers support the full gradient. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  border: 2px solid var(--scrollbar-track);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffa032 0%, #ff6a1a 48%, #ff5014 100%);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ffb24d 0%, #ff7b29 48%, #ff5b1a 100%);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
