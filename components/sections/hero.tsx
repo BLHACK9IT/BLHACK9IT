@@ -88,10 +88,16 @@ export default function Home() {
             </h1>
 
             {/* Supporting explanation of the user-first approach. */}
+            {/*
             <p className="mt-6 max-w-xl text-[1.05rem] font-medium leading-relaxed text-white/80 md:mt-8">
               I turn real user needs into accessible, intuitive
               products—combining thoughtful product decisions with reliable
               full-stack engineering.
+            </p>
+            */}
+            <p className="mt-6 max-w-xl text-[1.05rem] font-medium leading-relaxed text-white/80 md:mt-8">
+              I turn real user needs into accessible, intuitive products&mdash;combining
+              thoughtful product decisions with reliable full-stack engineering.
             </p>
 
             {/* Primary project CTA and secondary contact CTA. */}

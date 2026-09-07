@@ -62,7 +62,11 @@ export default function ResumeControl() {
             className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-xs text-white/60 transition hover:bg-[#ff5014]/10 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#ff8a24]/60"
           >
             <FileText className="h-4 w-4 text-[#ff8a24]" />
+            {/*
             View résumé
+          </button>
+            */}
+            View resume
           </button>
           <a
             href={resumeUrl}
@@ -79,7 +83,7 @@ export default function ResumeControl() {
       <button
         type="button"
         onClick={() => setIsPreviewOpen(true)}
-        className="fixed right-[5.25rem] top-6 z-[99] inline-flex min-h-12 items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950/95 px-4 text-[11px] font-medium text-white/70 shadow-2xl backdrop-blur-md transition active:scale-[.97] md:hidden"
+        className="resume-mobile-trigger fixed right-[5.25rem] top-6 z-[99] inline-flex min-h-12 items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950/95 px-4 text-[11px] font-medium text-white/70 shadow-2xl backdrop-blur-md transition active:scale-[.97] md:hidden"
         aria-label="View résumé"
       >
         <FileText className="h-4 w-4 text-[#ff8a24]" />
@@ -110,7 +114,7 @@ export default function ResumeControl() {
             >
               <div className="flex min-h-16 items-center justify-between gap-3 border-b border-white/10 px-4 sm:px-6">
                 <div className="min-w-0">
-                  <p className="font-mono text-[9px] uppercase tracking-[.18em] text-[#ff8a24]">
+                  <p className="resume-preview-label font-mono text-[9px] uppercase tracking-[.18em] text-[#ff8a24]">
                     Résumé preview
                   </p>
                   <h2
@@ -164,7 +168,7 @@ export default function ResumeControl() {
               <a
                 href={resumeUrl}
                 download="Adeyeri-Daniel-Resume.pdf"
-                className="mx-3 mb-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff8a24] to-[#ff5014] px-5 text-sm font-medium text-white sm:hidden"
+                className="resume-mobile-download mx-3 mb-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff8a24] to-[#ff5014] px-5 text-sm font-medium text-white sm:hidden"
               >
                 <Download className="h-4 w-4" />
                 Download résumé
@@ -183,6 +187,28 @@ export default function ResumeControl() {
         .resume-viewer .react-pdf__Page__canvas {
           width: 100% !important;
           height: auto !important;
+        }
+
+        /* Replacement labels prevent legacy encoding from reaching the UI. */
+        .resume-mobile-trigger,
+        .resume-preview-label,
+        .resume-mobile-download {
+          font-size: 0;
+        }
+
+        .resume-mobile-trigger::after {
+          content: "View resume";
+          font-size: 11px;
+        }
+
+        .resume-preview-label::after {
+          content: "Resume preview";
+          font-size: 9px;
+        }
+
+        .resume-mobile-download::after {
+          content: "Download resume";
+          font-size: 14px;
         }
       `}</style>
     </>

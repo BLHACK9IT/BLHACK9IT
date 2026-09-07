@@ -29,9 +29,17 @@ body {
 
 /* Portfolio scrollbar: Firefox uses the branded solid fallback. */
 html {
+  scroll-behavior: smooth;
   scrollbar-color: var(--scrollbar-orange) var(--scrollbar-track);
   scrollbar-width: thin;
   scrollbar-gutter: stable;
+}
+
+/* Respect users who prefer less animated movement. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Chromium, Safari, and other WebKit-based browsers support the full gradient. */

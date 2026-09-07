@@ -84,7 +84,10 @@ export const About = () => {
           className="mb-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#ffae6e] sm:text-sm"
         >
           <span className="h-px w-9 bg-[#ff6a1a]" aria-hidden="true" />
+          {/*
           01 â€” About me
+          */}
+          01 &mdash; About me
         </motion.div>
 
         {/* Large editorial belief statement and brand-color emphasis. */}
@@ -99,7 +102,10 @@ export const About = () => {
           <span className="bg-gradient-to-r from-[#ffa032] via-[#ff5014] to-[#ffaa33] bg-clip-text text-transparent">
             people
           </span>
+          {/*
           â€”not assumptions.
+          */}
+          &mdash;not assumptions.
         </motion.h2>
 
         {/* Two columns on desktop; portrait then story when stacked on mobile. */}
