@@ -8,66 +8,139 @@ import {
   useTransform,
 } from "framer-motion";
 
+// Flexible record shape: add only the fields an experience genuinely needs.
+// Optional fields automatically appear in the timeline when supplied.
+type ExperienceEntry = {
+  id?: string;
+  year: string;
+  role: string;
+  company: string;
+  link?: string;
+  linkLabel?: string;
+  story?: string;
+  result?: string;
+  location?: string;
+  employmentType?: string;
+  workMode?: string;
+  startDate?: string;
+  endDate?: string;
+  highlights?: string[];
+  technologies?: string[];
+  companyLogo?: string;
+  featured?: boolean;
+  metadata?: Record<string, string>;
+};
+
 // SECTION PURPOSE: pinned desktop and compact mobile versions of one career journey.
 // Replace this demonstration content with verified career history before launch.
-const experiences = [
+const experiences: ExperienceEntry[] = [
   {
-    year: "2022 — PRESENT",
-    role: "Senior Frontend Engineer",
-    company: "TechCorp Inc.",
+    year: "2026 — PRESENT",
+    role: "LEAD DEVELOPER",
+    company: "MAVEN AFRICA",
     story:
       "Turning complex requirements into clear, responsive experiences that help users complete important tasks.",
     result: "Design systems · Accessibility · Product delivery",
   },
+
   {
-    year: "2019 — 2022",
-    role: "Web Developer",
-    company: "Digital Agency",
+    year: "2024 — PRESENT",
+    role: "Cyber Security Student",
+    company: "Lincoln University Malaysia",
+    link: "https://www.lincoln.edu.ng/",
+    story: "I am building a solid foundation in security principles, network defense, and risk management, preparing to secure digital systems against evolving threats.",
+    result: "Security principles · Network defense · Risk management",
+  },
+
+  {
+    year: "2025 — 2026",
+    role: "Intern App Developer",
+    company: "IGS",
+    link: "https://iglobalsolutions.net",
     story:
-      "Building dependable websites across different audiences, devices, goals, and delivery constraints.",
+      "Developed a frontend prototype with Expo and Tailwind CSS, ensuring a responsive and user-friendly interface.",
     result: "Responsive products · Performance · Collaboration",
   },
+
   {
-    year: "2017 — 2019",
-    role: "Junior Developer",
-    company: "StartUp",
+    year: "2024 — 2025",
+    role: "Student",
+    company: "Lincoln College Science Management and Technology",
+    link: " https://www.lincoln.edu.ng/",
     story:
-      "Learning to translate feedback into practical improvements while building a strong engineering foundation.",
-    result: "Interface development · APIs · Iteration",
+      "I laid the groundwork for my technical journey, developing problem-solving skills and an understanding of system logic.",
+    result: "System logic · Foundational knowledge · Digital understanding",
   },
 ];
 
 type JourneyCardProps = {
-  experience: (typeof experiences)[number];
+  experience: ExperienceEntry;
   index: number;
   progress: MotionValue<number>;
 };
 
+// Optional details stay out of the DOM until a record provides them.
+function ExperienceDetails({ experience, alignEnd = false }: { experience: ExperienceEntry; alignEnd?: boolean }) {
+  const context = [experience.employmentType, experience.workMode, experience.location].filter(Boolean);
+
+  return (
+    <>
+      {context.length > 0 && (
+        <div className={`mt-4 flex flex-wrap gap-2 text-[9px] uppercase tracking-[.12em] text-white/35 ${alignEnd ? "justify-end" : ""}`}>
+          {context.map((item) => <span key={item} className="rounded-full border border-white/10 px-2.5 py-1">{item}</span>)}
+        </div>
+      )}
+      {experience.story && <p className={`mt-4 max-w-md text-sm leading-6 text-white/55 ${alignEnd ? "ml-auto" : ""}`}>{experience.story}</p>}
+      {experience.highlights && experience.highlights.length > 0 && (
+        <ul className={`mt-4 space-y-1.5 text-xs leading-5 text-white/45 ${alignEnd ? "ml-auto max-w-md" : ""}`}>
+          {experience.highlights.map((highlight) => <li key={highlight} className="flex gap-2"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#ff8a24]" />{highlight}</li>)}
+        </ul>
+      )}
+      {experience.technologies && experience.technologies.length > 0 && (
+        <div className={`mt-4 flex flex-wrap gap-2 ${alignEnd ? "justify-end" : ""}`}>
+          {experience.technologies.map((technology) => <span key={technology} className="rounded-full border border-white/10 px-2 py-1 text-[9px] uppercase tracking-[.1em] text-white/40">{technology}</span>)}
+        </div>
+      )}
+      {experience.result && <p className="mt-4 text-xs uppercase leading-5 tracking-[.12em] text-[#ffae6e]/75">{experience.result}</p>}
+      {experience.metadata && Object.keys(experience.metadata).length > 0 && (
+        <dl className={`mt-4 flex flex-wrap gap-x-4 gap-y-2 text-[10px] text-white/35 ${alignEnd ? "justify-end" : ""}`}>
+          {Object.entries(experience.metadata).map(([label, value]) => <div key={label}><dt className="inline uppercase tracking-[.1em] text-white/25">{label}: </dt><dd className="inline">{value}</dd></div>)}
+        </dl>
+      )}
+    </>
+  );
+}
+
 // Each card enters the shared center stage, pauses, then exits upward.
 function JourneyCard({ experience, index, progress }: JourneyCardProps) {
-  const start = 0.04 + index * 0.3;
+  // Divide the available scroll timeline across the current number of experiences.
+  const cardWindow = 0.9 / experiences.length;
+  const start = 0.04 + index * cardWindow;
+  const enter = start + cardWindow * 0.25;
+  const exitStart = start + cardWindow * 0.72;
+  const end = start + cardWindow * 0.98;
   const side = index % 2 === 0 ? -1 : 1;
   const opacity = useTransform(
     progress,
-    [start, start + 0.07, start + 0.2, start + 0.29],
+    [start, enter, exitStart, end],
     [0, 1, 1, 0],
   );
   const x = useTransform(
     progress,
-    [start, start + 0.08, start + 0.2, start + 0.29],
+    [start, enter, exitStart, end],
     [side * 180, 0, 0, side * -35],
   );
   const y = useTransform(
     progress,
-    [start, start + 0.08, start + 0.2, start + 0.29],
+    [start, enter, exitStart, end],
     [230, 0, 0, -340],
   );
   const scale = useTransform(
     progress,
-    [start, start + 0.08, start + 0.2, start + 0.29],
+    [start, enter, exitStart, end],
     [0.9, 1, 1, 0.92],
   );
-  const branch = useTransform(progress, [start + 0.01, start + 0.08], [0, 1]);
+  const branch = useTransform(progress, [start + cardWindow * 0.04, enter], [0, 1]);
   const isLeft = index % 2 === 0;
 
   return (
@@ -85,15 +158,16 @@ function JourneyCard({ experience, index, progress }: JourneyCardProps) {
       <h3 className="mt-3 text-2xl font-medium tracking-[-.025em] xl:text-3xl">
         {experience.role}
       </h3>
-      <p className="mt-1 text-sm text-white/40">{experience.company}</p>
-      <p
-        className={`mt-4 max-w-md text-sm leading-6 text-white/55 ${isLeft ? "ml-auto" : ""}`}
-      >
-        {experience.story}
+      <p className="mt-1 text-sm text-white/40">
+        {experience.link ? (
+          <a href={experience.link} target="_blank" rel="noopener noreferrer" className="transition hover:text-[#ffae6e] hover:underline underline-offset-4">
+            {experience.company}
+          </a>
+        ) : (
+          experience.company
+        )}
       </p>
-      <p className="mt-4 text-xs uppercase leading-5 tracking-[.12em] text-[#ffae6e]/75">
-        {experience.result}
-      </p>
+      <ExperienceDetails experience={experience} alignEnd={isLeft} />
     </motion.article>
   );
 }
@@ -111,7 +185,7 @@ export const Experience = () => {
     ["0%", "100%"],
   );
   const stage = useTransform(scrollYProgress, (value) =>
-    String(Math.min(3, Math.floor(value * 3) + 1)).padStart(2, "0"),
+    String(Math.min(experiences.length, Math.floor(value * experiences.length) + 1)).padStart(2, "0"),
   );
   const instructionOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
 
@@ -157,7 +231,7 @@ export const Experience = () => {
             </div>
             {experiences.map((experience, index) => (
               <JourneyCard
-                key={experience.year}
+                key={experience.id ?? `${experience.year}-${experience.company}-${experience.role}`}
                 experience={experience}
                 index={index}
                 progress={scrollYProgress}
@@ -171,7 +245,7 @@ export const Experience = () => {
             </div>
             <div className="absolute bottom-[5%] right-0 font-mono text-xs text-white/35">
               JOURNEY{" "}
-              <motion.span className="text-[#ff8a24]">{stage}</motion.span> / 03
+              <motion.span className="text-[#ff8a24]">{stage}</motion.span> / {String(experiences.length).padStart(2, "0")}
             </div>
           </div>
         </div>
@@ -190,7 +264,7 @@ export const Experience = () => {
         <div className="relative mt-14 border-l border-white/10 pl-7">
           {experiences.map((experience) => (
             <motion.article
-              key={experience.year}
+              key={experience.id ?? `${experience.year}-${experience.company}-${experience.role}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -201,11 +275,16 @@ export const Experience = () => {
                 {experience.year}
               </span>
               <h3 className="mt-3 text-2xl">{experience.role}</h3>
-              <p className="text-sm text-white/40">{experience.company}</p>
-              <p className="mt-4 leading-7 text-white/55">{experience.story}</p>
-              <p className="mt-4 text-xs uppercase tracking-[.1em] text-[#ffae6e]">
-                {experience.result}
+              <p className="mt-4 text-xs uppercase tracking-[.12em] text-[#ffae6e]/75">
+                {experience.link ? (
+                  <a href={experience.link} target="_blank" rel="noopener noreferrer" className="transition hover:text-[#ffae6e] hover:underline underline-offset-4">
+                    {experience.company}
+                  </a>
+                ) : (
+                  experience.company
+                )}
               </p>
+              <ExperienceDetails experience={experience} />
             </motion.article>
           ))}
         </div>

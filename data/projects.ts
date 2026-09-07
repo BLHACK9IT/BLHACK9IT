@@ -33,7 +33,7 @@ export const projects: Project[] = [
     outcome:
       "A focused journey with clearer hierarchy, responsive behavior, and accessible interaction states.",
     role: "End-to-end product design and development",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Framer Motion"],
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Expo"],
     githubUrl: "https://github.com/BLHACK9IT",
   },
   {
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     outcome:
       "Simplified information architecture with fast filtering and clearer visual relationships.",
     role: "Product thinking, interface engineering, and API integration",
-    technologies: ["React", "Node.js", "GraphQL", "Tailwind CSS"],
+    technologies: ["React", "Laravel", "Node.js", "Tailwind CSS"],
     githubUrl: "https://github.com/BLHACK9IT",
   },
   {

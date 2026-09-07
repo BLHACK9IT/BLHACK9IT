@@ -25,8 +25,8 @@ const channels = [
 
 // Replace these placeholders with your real contact destinations before launch.
 const contactLinks = {
-  email: "hello@example.com",
-  whatsapp: "https://wa.me/2340000000000",
+  email: "danieladeyeri2021@gmail.com",
+  whatsapp: "https://wa.me/+2347032505432",
   googleChat: "https://chat.google.com/",
 };
 

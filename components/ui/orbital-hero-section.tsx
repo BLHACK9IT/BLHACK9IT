@@ -13,6 +13,39 @@ interface OrbitalHeroSectionProps {
   lead?: number;
 }
 
+type Star = {
+  left: number;
+  top: number;
+  size: number;
+  opacity: number;
+  duration: number;
+  delay: number;
+};
+
+// A 32-bit integer generator is deterministic across the server and browser.
+// Avoid Math.random and floating-point trig here: either creates hydration differences.
+const createStarfield = (): Star[] => {
+  let seed = 0x1a2b3c4d;
+  const next = () => {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return (seed >>> 0) / 4_294_967_296;
+  };
+
+  return Array.from({ length: 110 }, () => ({
+    left: next() * 100,
+    top: next() * 100,
+    size: 0.5 + next() * 2,
+    opacity: 0.15 + next() * 0.55,
+    duration: 2.5 + next() * 3.5,
+    delay: next() * 3,
+  }));
+};
+
+// Module-level data is created once per runtime and is identical during hydration.
+const stars = createStarfield();
+
 export const OrbitalHeroSection: React.FC<OrbitalHeroSectionProps> = ({
   children,
   focus = [0.5, 0.5],
@@ -34,27 +67,6 @@ export const OrbitalHeroSection: React.FC<OrbitalHeroSectionProps> = ({
         : scrim === "right"
           ? "bg-gradient-to-l"
           : "bg-gradient-to-t";
-
-  const stars = React.useMemo(
-    () =>
-      Array.from({ length: 110 }, (_, index) => {
-        // Deterministic values keep server and client output identical.
-        const seeded = (offset: number) => {
-          const value = Math.sin((index + 1) * (offset + 12.9898)) * 43758.5453;
-          return value - Math.floor(value);
-        };
-
-        return {
-          left: seeded(1) * 100,
-          top: seeded(2) * 100,
-          size: 0.5 + seeded(3) * 2,
-          opacity: 0.15 + seeded(4) * 0.55,
-          duration: 2.5 + seeded(5) * 3.5,
-          delay: seeded(6) * 3,
-        };
-      }),
-    [],
-  );
 
   // Mouse tilt for background only
   useEffect(() => {
